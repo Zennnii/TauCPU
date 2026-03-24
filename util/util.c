@@ -4,23 +4,23 @@
 #include <ctype.h>
 #include "../cpu/cpu.h"
 
-// Reads a 8 bit value from memory to a specified address
+// Reads a 8 bit value from a specified address in memory
 uint8_t mem_read8(CPU* cpu, uint16_t addr) {
     return cpu->memory[addr];
 }
 
-// Reads a 16 bit value from memory to a specified address
+// Reads a 16 bit value from a specified address in memory
 uint16_t mem_read16(CPU* cpu, uint16_t addr) {
     return cpu->memory[addr] |
           (cpu->memory[addr + 1] << 8);
 }
 
-// Writes a 8 bit value to memory to a specified address
+// Writes a 8 bit value to a specified address in memory
 void mem_write8(CPU* cpu, uint16_t addr, uint8_t value) {
     cpu->memory[addr] = value;
 }
 
-// Writes a 16 bit value to memory to a specified address
+// Writes a 16 bit value to a specified address in memory
 void mem_write16(CPU* cpu, uint16_t addr, uint16_t value) {
     cpu->memory[addr]     = value & 0xFF;
     cpu->memory[addr + 1] = (value >> 8) & 0xFF;
