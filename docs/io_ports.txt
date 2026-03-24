@@ -1,0 +1,9 @@
+I/O Ports
+
+Port Name : STDOUT
+Address   : 0x01
+Description: Terminal output (stdout)
+
+Port Name : STDERR
+Address   : 0x02
+Description: Debug output (stderr)

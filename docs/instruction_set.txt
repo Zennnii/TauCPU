@@ -1,0 +1,61 @@
+Instruction set
+
+ADD:
+Syntax: ADD reg1, reg2
+Adds reg2 to reg1, and updates the ZF, NF and CF flags
+
+ADDI:
+Syntax: ADDI reg1, imm16
+Adds a 16-bit immediate value (imm16) to reg1, and updates the ZF, NF and CF flags
+
+INC:
+Syntax: INC reg1
+Increments reg1 by 1, updates the ZF and NF flags, does not update the CF flag
+
+DEC:
+Syntax: DEC reg1
+Decrements reg1 by 1, updates the ZF and NF flags, does not update the CF flag
+
+CMP:
+Syntax: CMP reg1, reg2
+Compares the values in reg1 and reg2 by subtracting reg2 from reg1 without storing the result, and updates the ZF, NF and CF flags
+
+CMPI:
+Syntax: CMPI reg1, imm16
+Compares the values in reg1 and a 16-bit immediate value (imm16) by subtracting imm16 from reg1 without storing the result, and updates the ZF, NF and CF flags
+
+MOV:
+Syntax: MOV dest, src
+Copies the value from the source register (src) into the destination register (dest), does not update the ZF, NF and CF flags
+
+MOVI:
+Syntax: MOVI dest, imm16
+Loads a 16-bit immediate value (imm16) into the destination register (dest), does not update the ZF, NF and CF flags
+
+LDR:
+Syntax: LDR dest, addrReg
+Loads a 16-bit value from memory into the destination register. The memory address is taken from the contents of addrReg, and does not update the ZF, NF and CF flags
+
+LDRI:
+Syntax: LDRI dest, base, imm16
+Loads a 16-bit value from memory at the address formed by adding the base register (base) and the 16-bit immediate offset (imm16) into the destination register (dest). This instruction does not update the ZF, NF, or CF flags.
+
+STR:
+Syntax: STR src, addrReg
+Stores the value from the source register into memory at the address specified by addrReg, and does not update the ZF, NF and CF flags
+
+STRI:
+Syntax: STRI src, base, imm16
+Stores the 16-bit value from the source register (src) into memory at the address formed by adding the base register (base) and the 16-bit immediate offset (imm16). This instruction does not update the ZF, NF, or CF flags.
+
+OUT:
+Syntax: OUT port, src
+Writes the value from the source register (src) to the specified I/O port (port), used for port-mapped output devices (e.g., terminal, display, or debug port), and does not update the ZF, NF and CF flags
+
+OUTI:
+Syntax: OUTI port, imm16
+Writes an immediate 16-bit value (imm16) directly to the specified I/O port (port), used for output without needing a register, and does not update the ZF, NF and CF flags
+
+HLT:
+Syntax: HLT
+Halts CPU execution. The CPU stops fetching and executing instructions until restart, used to indicate program termination, does not update the ZF, NF and CF flags
