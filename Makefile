@@ -9,14 +9,14 @@ else
 CFLAGS += -O2
 endif
 
-SRC = main.c \
-      cpu/cpu.c \
-      loader/loader.c \
-      util/util.c \
-      cpu/instr/arithmetic.c \
-      cpu/instr/data_transfer.c \
-      cpu/instr/program_flow.c \
-      cpu/instr/io.c
+SRC = src/main.c \
+      src/cpu/cpu.c \
+      src/loader/loader.c \
+      src/util/util.c \
+      src/cpu/instr/arithmetic.c \
+      src/cpu/instr/data_transfer.c \
+      src/cpu/instr/program_flow.c \
+      src/cpu/instr/io.c
 
 OBJ = $(SRC:.c=.o)
 
