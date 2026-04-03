@@ -36,17 +36,16 @@ The emulator supports port-mapped devices, including:
 
 See [I/O ports](docs/io_ports.txt) for a full list of I/O ports.
 
-## Assembler
-
-Custom assembler for TauCPU:
-
-- [TASM – TauCPU Assembler](https://github.com/Zennnii/TASM)
-
 ## Project Structure
 
 src/ - CPU emulator
 docs/ - Documentation
 
+## Assembler
+
+Custom assembler for TauCPU:
+
+- [TASM – TauCPU Assembler](https://github.com/Zennnii/TASM)
 
 ## Contributing
 
