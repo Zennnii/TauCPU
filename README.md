@@ -1,24 +1,29 @@
 # TauCPU
 
-A small custom 16-bit CPU emulator and instruction set architecture built for experimenting and running simple assembly programs.
+TauCPU is a custom 16-bit virtual CPU and instruction set architecture designed for experimenting with low-level systems programming, emulation, and assembly language development.
 
-It includes arithmetic, data movement, memory access, comparison instructions, basic port-mapped output, conditional jumps and a halt instruction.
+It includes a full CPU emulator and a custom instruction set. Programs can be written using a separate assembler (TASM), which is maintained in a different repository.
+
+## Features
+
+- 16-bit CPU architecture
+- Register-based instruction set
+- Arithmetic and logic operations
+- Memory load/store system
+- Port-mapped I/O
+- Conditional branching and jumps
+- Custom assembler (TASM)
 
 ## Architecture Overview
 
-The CPU operates on 16-bit values and supports:
-
-- Arithmetic
-- Register-to-register operations
-- Immediate values
-- Memory access
-- Port-mapped I/O
-- Halting execution
-- Conditional jumps
+- Word size: 16-bit
+- Supports registers, memory access, and immediate values
+- Includes CPU flags: ZF, NF, CF, VF
+- Supports port-mapped I/O devices
 
 ## Instruction Set
 
-See [instruction_set.txt](docs/instruction_set.txt) for the full instruction reference
+See [ISA reference](docs/instruction_set.txt) for full ISA reference.
 
 ## I/O Ports
 
@@ -27,18 +32,26 @@ The emulator supports port-mapped devices, including:
 - Terminal output
 - Debugging output
 - Future display devices
-- Future keyboard or timer hardware
+- Future input hardware (keyboard, timers)
 
-See [io_ports.txt](docs/io_ports.txt) For a full list of I/O ports
+See [I/O ports](docs/io_ports.txt) for a full list of I/O ports.
+
+## Assembler
+
+Custom assembler for TauCPU:
+
+- [TASM – TauCPU Assembler](https://github.com/Zennnii/TASM)
+
+## Project Structure
+
+src/ - CPU emulator
+docs/ - Documentation
+
 
 ## Contributing
 
-This is a personal project, but contributions and suggestions are welcome.
+This is a personal project, but suggestions and improvements are welcome.
 
 ## Contact
 
-For questions or feedback, feel free to reach me at: [vukmitic81@gmail.com](mailto:vukmitic81@gmail.com)
-
-## Assembler (TASM)
-
-[TASM – TauCPU Assembler](https://github.com/Zennnii/TASM)
+For questions or feedback, feel free to reach me at: vukmitic81@gmail.com
