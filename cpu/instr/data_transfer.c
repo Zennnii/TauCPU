@@ -11,12 +11,9 @@ void mov(CPU* cpu, uint16_t r0, uint16_t r1) {
 
 // MOVI instr
 void movi(CPU* cpu, uint16_t r0, uint16_t imm16) {
-    //printf("MOVI r%u, %u at PC=%u\n", r0, imm16, cpu->PC);
     cpu->regs[r0] = imm16;
 
     cpu->PC += 4;
-    
-    //printf("PC after MOVI=%u\n", cpu->PC);
 }
 
 // LDR instr
