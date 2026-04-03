@@ -5,109 +5,116 @@ Note: Any instructions except arithmetic instructions do not update any CPU flag
 == Arithmetic instructions ==
 
 ADD (Add):
-    Syntax: ADD reg1, reg2
+    Opcode: 10 (0x0A)
     Adds reg2 to reg1, and updates the ZF, NF, CF and VF flags
 
 ADDI (Add Immediate):
-    Syntax: ADDI reg1, imm16
+    Opcode: 11 (0x0B)
     Adds a 16-bit immediate value (imm16) to reg1, and updates the ZF, NF, CF and VF flags
 
 SUB (Subtract):
-    Syntax: ADD reg1, reg2
+    Opcode: 12 (0x0C)
     Subtracts reg2 from reg1, and updates the ZF, NF, CF and VF flags
 
 SUBI (Subtract Immediate):
-    Syntax: ADDI reg1, imm16
+    Opcode: 13 (0x0D)
     Subtracts a 16-bit immediate value (imm16) from reg1, and updates the ZF, NF, CF and VF flags
 
 INC (Increment):
-    Syntax: INC reg1
+    Opcode: 14 (0x0E)
     Increments reg1 by 1, updates the ZF and NF flags, does not update the CF or VF flags
 
 DEC (Decrement):
-    Syntax: DEC reg1
+    Opcode: 15 (0x0F)
     Decrements reg1 by 1, updates the ZF and NF flags, does not update the CF or VF flags
 
 CMP (Compare):
-    Syntax: CMP reg1, reg2
+    Opcode: 16 (0x10)
     Compares the values in reg1 and reg2 by subtracting reg2 from reg1 without storing the result, and updates the ZF, NF, CF and VF flags
 
 CMPI (Compare Immediate):
-    Syntax: CMPI reg1, imm16
-    Compares the values in reg1 and a 16-bit immediate value (imm16) by subtracting imm16 from reg1 without storing the result, and updates the ZF, NF, CF and VF
+    Opcode: 17 (0x11)
+    Compares the values in reg1 and a 16-bit immediate value (imm16) by subtracting imm16 from reg1 without storing the result, and updates the ZF, NF, CF and VF flags
+
 
 == Data transfer instructions ==
 
 MOV (Move):
-    Syntax: MOV dest, src
+    Opcode: 20 (0x14)
     Copies the value from the source register (src) into the destination register (dest)
 
 MOVI (Move Immediate):
-    Syntax: MOVI dest, imm16
+    Opcode: 21 (0x15)
     Loads a 16-bit immediate value (imm16) into the destination register (dest)
 
 LDR (Load Register):
-    Syntax: LDR dest, addrReg
+    Opcode: 22 (0x16)
     Loads a 16-bit value from memory into the destination register. The memory address is taken from the contents of addrReg
 
 LDRI (Load Register Immediate Offset):
-    Syntax: LDRI dest, base, imm16
+    Opcode: 23 (0x17)
     Loads a 16-bit value from memory at the address formed by adding the base register (base) and the 16-bit immediate offset (imm16) into the destination register (dest)
 
 STR (Store Register):
-    Syntax: STR src, addrReg
+    Opcode: 24 (0x18)
     Stores the value from the source register into memory at the address specified by addrReg
 
 STRI (Store Register Immediate Offset):
-    Syntax: STRI src, base, imm16
+    Opcode: 25 (0x19)
     Stores the 16-bit value from the source register (src) into memory at the address formed by adding the base register (base) and the 16-bit immediate offset (imm16)
+
 
 == I/O instructions ==
 
 OUT (Output):
-    Syntax: OUT port, src
+    Opcode: 42 (0x2A)
     Writes the value from the source register (src) to the specified I/O port (port), used for port-mapped output devices (e.g., terminal, display, or debug port)
 
 OUTI (Output Immediate):
-    Syntax: OUTI port, imm16
+    Opcode: 43 (0x2B)
     Writes an immediate 16-bit value (imm16) directly to the specified I/O port (port), used for output without needing a register
+
 
 == Program flow instructions ==
 
+HLT (Halt):
+    Opcode: 30 (0x1E)
+    Stops CPU execution
+
 JMP (Jump):
-    Syntax: JMP addr
+    Opcode: 31 (0x1F)
     Unconditionally jumps to the specified address (addr)
 
 JZ (Jump if Zero):
-    Syntax: JZ addr
+    Opcode: 32 (0x20)
     Jumps to addr if the Zero Flag (ZF) is set (ZF = 1)
 
 JNZ (Jump if Not Zero):
-    Syntax: JNZ addr
+    Opcode: 33 (0x21)
     Jumps to addr if the Zero Flag is not set (ZF = 0)
 
 JN (Jump if Negative):
-    Syntax: JN addr
+    Opcode: 34 (0x22)
     Jumps to addr if the Negative Flag (NF) is set (NF = 1)
 
 JNN (Jump if Not Negative):
-    Syntax: JNN addr
+    Opcode: 35 (0x23)
     Jumps to addr if the Negative Flag is not set (NF = 0)
 
 JC (Jump if Carry):
-    Syntax: JC addr
+    Opcode: 36 (0x24)
     Jumps to addr if the Carry Flag (CF) is set (CF = 1)
 
 JNC (Jump if No Carry):
-    Syntax: JNC addr
+    Opcode: 37 (0x25)
     Jumps to addr if the Carry Flag is not set (CF = 0)
 
 JV (Jump if Overflow):
-    Syntax: JV addr
+    Opcode: 38 (0x26)
     Jumps to addr if the Overflow Flag (VF) is set (VF = 1)
 
 JNV (Jump if No Overflow):
-    Syntax: JNV addr
+    Opcode: 39 (0x27)
     Jumps to addr if the Overflow Flag is not set (VF = 0)
 
 Notes:
