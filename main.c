@@ -15,8 +15,9 @@ int main(int argc, char **argv) {
 
     load_program(&cpu, argv[1]);
 
-    while (cpu.running)
+    while (cpu.running) {
         cpu_step(&cpu);
+    }
 
     return 0;
 }

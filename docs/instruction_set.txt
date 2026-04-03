@@ -1,61 +1,116 @@
 Instruction set
 
-ADD:
-Syntax: ADD reg1, reg2
-Adds reg2 to reg1, and updates the ZF, NF and CF flags
+Note: Any instructions except arithmetic instructions do not update any CPU flags
 
-ADDI:
-Syntax: ADDI reg1, imm16
-Adds a 16-bit immediate value (imm16) to reg1, and updates the ZF, NF and CF flags
+== Arithmetic instructions ==
 
-INC:
-Syntax: INC reg1
-Increments reg1 by 1, updates the ZF and NF flags, does not update the CF flag
+ADD (Add):
+    Syntax: ADD reg1, reg2
+    Adds reg2 to reg1, and updates the ZF, NF, CF and VF flags
 
-DEC:
-Syntax: DEC reg1
-Decrements reg1 by 1, updates the ZF and NF flags, does not update the CF flag
+ADDI (Add Immediate):
+    Syntax: ADDI reg1, imm16
+    Adds a 16-bit immediate value (imm16) to reg1, and updates the ZF, NF, CF and VF flags
 
-CMP:
-Syntax: CMP reg1, reg2
-Compares the values in reg1 and reg2 by subtracting reg2 from reg1 without storing the result, and updates the ZF, NF and CF flags
+SUB (Subtract):
+    Syntax: ADD reg1, reg2
+    Subtracts reg2 from reg1, and updates the ZF, NF, CF and VF flags
 
-CMPI:
-Syntax: CMPI reg1, imm16
-Compares the values in reg1 and a 16-bit immediate value (imm16) by subtracting imm16 from reg1 without storing the result, and updates the ZF, NF and CF flags
+SUBI (Subtract Immediate):
+    Syntax: ADDI reg1, imm16
+    Subtracts a 16-bit immediate value (imm16) from reg1, and updates the ZF, NF, CF and VF flags
 
-MOV:
-Syntax: MOV dest, src
-Copies the value from the source register (src) into the destination register (dest), does not update the ZF, NF and CF flags
+INC (Increment):
+    Syntax: INC reg1
+    Increments reg1 by 1, updates the ZF and NF flags, does not update the CF or VF flags
 
-MOVI:
-Syntax: MOVI dest, imm16
-Loads a 16-bit immediate value (imm16) into the destination register (dest), does not update the ZF, NF and CF flags
+DEC (Decrement):
+    Syntax: DEC reg1
+    Decrements reg1 by 1, updates the ZF and NF flags, does not update the CF or VF flags
 
-LDR:
-Syntax: LDR dest, addrReg
-Loads a 16-bit value from memory into the destination register. The memory address is taken from the contents of addrReg, and does not update the ZF, NF and CF flags
+CMP (Compare):
+    Syntax: CMP reg1, reg2
+    Compares the values in reg1 and reg2 by subtracting reg2 from reg1 without storing the result, and updates the ZF, NF, CF and VF flags
 
-LDRI:
-Syntax: LDRI dest, base, imm16
-Loads a 16-bit value from memory at the address formed by adding the base register (base) and the 16-bit immediate offset (imm16) into the destination register (dest). This instruction does not update the ZF, NF, or CF flags.
+CMPI (Compare Immediate):
+    Syntax: CMPI reg1, imm16
+    Compares the values in reg1 and a 16-bit immediate value (imm16) by subtracting imm16 from reg1 without storing the result, and updates the ZF, NF, CF and VF
 
-STR:
-Syntax: STR src, addrReg
-Stores the value from the source register into memory at the address specified by addrReg, and does not update the ZF, NF and CF flags
+== Data transfer instructions ==
 
-STRI:
-Syntax: STRI src, base, imm16
-Stores the 16-bit value from the source register (src) into memory at the address formed by adding the base register (base) and the 16-bit immediate offset (imm16). This instruction does not update the ZF, NF, or CF flags.
+MOV (Move):
+    Syntax: MOV dest, src
+    Copies the value from the source register (src) into the destination register (dest)
 
-OUT:
-Syntax: OUT port, src
-Writes the value from the source register (src) to the specified I/O port (port), used for port-mapped output devices (e.g., terminal, display, or debug port), and does not update the ZF, NF and CF flags
+MOVI (Move Immediate):
+    Syntax: MOVI dest, imm16
+    Loads a 16-bit immediate value (imm16) into the destination register (dest)
 
-OUTI:
-Syntax: OUTI port, imm16
-Writes an immediate 16-bit value (imm16) directly to the specified I/O port (port), used for output without needing a register, and does not update the ZF, NF and CF flags
+LDR (Load Register):
+    Syntax: LDR dest, addrReg
+    Loads a 16-bit value from memory into the destination register. The memory address is taken from the contents of addrReg
 
-HLT:
-Syntax: HLT
-Halts CPU execution. The CPU stops fetching and executing instructions until restart, used to indicate program termination, does not update the ZF, NF and CF flags
+LDRI (Load Register Immediate Offset):
+    Syntax: LDRI dest, base, imm16
+    Loads a 16-bit value from memory at the address formed by adding the base register (base) and the 16-bit immediate offset (imm16) into the destination register (dest)
+
+STR (Store Register):
+    Syntax: STR src, addrReg
+    Stores the value from the source register into memory at the address specified by addrReg
+
+STRI (Store Register Immediate Offset):
+    Syntax: STRI src, base, imm16
+    Stores the 16-bit value from the source register (src) into memory at the address formed by adding the base register (base) and the 16-bit immediate offset (imm16)
+
+== I/O instructions ==
+
+OUT (Output):
+    Syntax: OUT port, src
+    Writes the value from the source register (src) to the specified I/O port (port), used for port-mapped output devices (e.g., terminal, display, or debug port)
+
+OUTI (Output Immediate):
+    Syntax: OUTI port, imm16
+    Writes an immediate 16-bit value (imm16) directly to the specified I/O port (port), used for output without needing a register
+
+== Program flow instructions ==
+
+JMP (Jump):
+    Syntax: JMP addr
+    Unconditionally jumps to the specified address (addr)
+
+JZ (Jump if Zero):
+    Syntax: JZ addr
+    Jumps to addr if the Zero Flag (ZF) is set (ZF = 1)
+
+JNZ (Jump if Not Zero):
+    Syntax: JNZ addr
+    Jumps to addr if the Zero Flag is not set (ZF = 0)
+
+JN (Jump if Negative):
+    Syntax: JN addr
+    Jumps to addr if the Negative Flag (NF) is set (NF = 1)
+
+JNN (Jump if Not Negative):
+    Syntax: JNN addr
+    Jumps to addr if the Negative Flag is not set (NF = 0)
+
+JC (Jump if Carry):
+    Syntax: JC addr
+    Jumps to addr if the Carry Flag (CF) is set (CF = 1)
+
+JNC (Jump if No Carry):
+    Syntax: JNC addr
+    Jumps to addr if the Carry Flag is not set (CF = 0)
+
+JV (Jump if Overflow):
+    Syntax: JV addr
+    Jumps to addr if the Overflow Flag (VF) is set (VF = 1)
+
+JNV (Jump if No Overflow):
+    Syntax: JNV addr
+    Jumps to addr if the Overflow Flag is not set (VF = 0)
+
+Notes:
+    Any of these instructions only read flags and do not modify them.
+    addr can be a raw 16-bit address or a label resolved by the assembler.
+    If the condition is true, the PC is set to addr. Otherwise execution continues normally.

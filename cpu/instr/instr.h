@@ -26,5 +26,14 @@ void outi(CPU* cpu, uint8_t port, uint16_t imm16);
 
 // Program flow instructions
 void hlt(CPU* cpu);
+void jmp(CPU* cpu, uint16_t addr);
+void jz(CPU* cpu, uint16_t addr);
+void jnz(CPU* cpu, uint16_t addr);
+void cpu_jn(CPU* cpu, uint16_t addr);
+void jnn(CPU* cpu, uint16_t addr);
+void jc(CPU* cpu, uint16_t addr);
+void jnc(CPU* cpu, uint16_t addr);
+void jv(CPU* cpu, uint16_t addr);
+void jnv(CPU* cpu, uint16_t addr);
 
 #endif

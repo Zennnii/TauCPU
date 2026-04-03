@@ -81,3 +81,21 @@ void update_nf(CPU* cpu, uint16_t result) {
 void update_cf(CPU* cpu, uint32_t result) {
     cpu->CF = result > 0xFFFF;
 }
+
+uint8_t overflow_add(uint16_t a, uint16_t b, uint16_t result) {
+    return (~(a ^ b) & (a ^ result)) >> 15;
+}
+
+uint8_t overflow_sub(uint16_t a, uint16_t b, uint16_t result) {
+    return ((a ^ b) & (a ^ result)) >> 15;
+}
+
+// Updates the VF flag (addition)
+void update_vf_add(CPU* cpu, uint16_t a, uint16_t b, uint16_t result) {
+    cpu->VF = overflow_add(a, b, result);
+}
+
+// Updates the VF flag (subtraction)
+void update_vf_sub(CPU* cpu, uint16_t a, uint16_t b, uint16_t result) {
+    cpu->VF = overflow_sub(a, b, result);
+}

@@ -12,7 +12,6 @@ void cpu_init(CPU *cpu) {
 // CPU step function
 void cpu_step(CPU *cpu) {
     int opcode = cpu->memory[cpu->PC];
-    //printf("PC=%u opcode=%u\n", cpu->PC, cpu->memory[cpu->PC]);
 
     switch (opcode) {
         case OP_ADD: {
@@ -75,7 +74,6 @@ void cpu_step(CPU *cpu) {
             uint8_t r0 = cpu->memory[cpu->PC + 1];
             uint16_t imm16 = cpu->memory[cpu->PC + 2] |
                             (cpu->memory[cpu->PC + 3] << 8);
-            //printf("decoded MOVI: r0=%u imm16=%u\n", r0, imm16);
             movi(cpu, r0, imm16);
             
             break;
@@ -139,6 +137,79 @@ void cpu_step(CPU *cpu) {
             
             break;
         }
+
+        case OP_JZ: {
+            uint16_t addr = cpu->memory[cpu->PC + 1] |
+                   (cpu->memory[cpu->PC + 2] << 8);
+
+            jz(cpu, addr);
+
+            break;
+        }
+
+        case OP_JNZ: {
+            uint16_t addr = cpu->memory[cpu->PC + 1] |
+                   (cpu->memory[cpu->PC + 2] << 8);
+
+            jnz(cpu, addr);
+
+            break;
+        }
+
+        case OP_JN: {
+            uint16_t addr = cpu->memory[cpu->PC + 1] |
+                   (cpu->memory[cpu->PC + 2] << 8);
+
+            cpu_jn(cpu, addr);
+
+            break;
+        }
+
+        case OP_JNN: {
+            uint16_t addr = cpu->memory[cpu->PC + 1] |
+                   (cpu->memory[cpu->PC + 2] << 8);
+
+            jnn(cpu, addr);
+
+            break;
+        }
+
+        case OP_JC: {
+            uint16_t addr = cpu->memory[cpu->PC + 1] |
+                   (cpu->memory[cpu->PC + 2] << 8);
+
+            jc(cpu, addr);
+
+            break;
+        }
+
+        case OP_JNC: {
+            uint16_t addr = cpu->memory[cpu->PC + 1] |
+                   (cpu->memory[cpu->PC + 2] << 8);
+
+            jnc(cpu, addr);
+
+            break;
+        }
+
+        case OP_JV: {
+            uint16_t addr = cpu->memory[cpu->PC + 1] |
+                   (cpu->memory[cpu->PC + 2] << 8);
+
+            jv(cpu, addr);
+
+            break;
+        }
+
+        case OP_JNV: {
+            uint16_t addr = cpu->memory[cpu->PC + 1] |
+                   (cpu->memory[cpu->PC + 2] << 8);
+
+            jnv(cpu, addr);
+
+            break;
+        }
+
 
         default: {
             printf("Unknown opcode %u at PC=%u\n", opcode, cpu->PC);

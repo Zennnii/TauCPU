@@ -1,14 +1,22 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -O2
+CFLAGS = -Wall -Wextra -g
+
+DEBUG ?= 1
+
+ifeq ($(DEBUG),1)
+CFLAGS += -O0
+else
+CFLAGS += -O2
+endif
 
 SRC = main.c \
       cpu/cpu.c \
       loader/loader.c \
-	  util/util.c \
-	  cpu/instr/arithmetic.c \
-	  cpu/instr/data_transfer.c \
-	  cpu/instr/program_flow.c \
-	  cpu/instr/io.c \
+      util/util.c \
+      cpu/instr/arithmetic.c \
+      cpu/instr/data_transfer.c \
+      cpu/instr/program_flow.c \
+      cpu/instr/io.c
 
 OBJ = $(SRC:.c=.o)
 
